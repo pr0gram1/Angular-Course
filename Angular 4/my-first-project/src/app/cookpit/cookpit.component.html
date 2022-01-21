@@ -1,0 +1,29 @@
+// two-way data binding to her severName and serverContent (sometimes we dont need to use two way)
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>Add new Servers or blueprints!</p>
+    <label>Server Name</label>
+    <!--<input type="text" class="form-control" [(ngModel)]="newServerName">-->
+    <input
+      type="text"
+      class="form-control"
+      #serverNameInput> <!--Local reference will hold to the whole HTML properties.
+      Use them everywhere in template... only there on TS code.. only in tamplate -->
+
+    <label>Server Content</label>
+   <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent">-->
+    <input
+      type="text"
+      class="form-control"
+    #serverContectInput>
+
+    <br>
+    <button
+      class="btn btn-primary"
+      (click)="onAddServer(serverNameInput)">Add Server</button>
+    <button
+      class="btn btn-primary"
+      (click)="onAddBlueprint(serverNameInput)">Add Server Blueprint</button>
+  </div>
+</div>

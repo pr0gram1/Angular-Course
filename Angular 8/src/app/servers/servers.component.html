@@ -1,0 +1,29 @@
+<!-- routerlink, quaery and fragments are like addons on url. Editing the links on server tabs.
+ router outlet - adds a new hook which will be used on all child routes fo the route being loaded on the servers comp withc is  / servers route-->
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a
+
+        [routerLink]="['/servers', server.id]"
+        [queryParams]="{allowEdit: server.id === 3 ? '1' : '0'}"
+        fragment = "loading"
+
+
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+      </a>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <router-outlet></router-outlet>
+    <!--<button class = "btn btn-primary"(click)="onReload()">Reload page</button>
+    <app-edit-server></app-edit-server>
+    <hr>
+    <app-server></app-server>-->
+  </div>
+</div>
+

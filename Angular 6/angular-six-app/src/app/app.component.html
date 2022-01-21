@@ -1,0 +1,72 @@
+<!--using ngif and ng for we are seperating odd and even numbers by clik button
+we assinged css class for color chaning of numbers tj. if only odd is dislayed it will change number collors to red
+ square brakcets idnicate that we are binding to some property on class -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="onlyOdd= !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-grup">
+        <div *ngif ="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass] ="{odd: odd % 2 !== 0}"
+            [ngStyle] ="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let odd of oddNumbers">
+            {{ odd }}
+          </li>
+        </div>
+        <!--<div *ngif ="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass] ="{odd: even % 2 !== 0}"
+            [ngStyle] ="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{ even }}
+          </li>
+        </div>
+        <ng-template [ngIf] ="!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              [ngClass] ="{odd: even % 2 !== 0}"
+              [ngStyle] ="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let even of evenNumbers">
+              {{ even }}
+            </li>
+
+          </div>
+        </ng-template>
+         Same as code bellow
+         -->
+
+        <div *appUnless="onlyOdd">
+         <li
+           class="list-group-item"
+           [ngClass] ="{odd: even % 2 !== 0}"
+           [ngStyle] ="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+           *ngFor="let even of evenNumbers">
+           {{ even }}
+         </li>
+       </div>
+     </ul>
+     <!-- we dont use square brackets [] because the dir name is just a aselector setted in basic-high ts class
+      and the [] are not part of a name but a selector style telling angular please select as a atributte to a element of a paragraph
+       Green styling on web-->
+      <p appBasicHighlight>Style me with basic directive!</p>
+      <p [appBetterHighlight] = "'red'"defaultColor="yellow">
+        Style me with better directive!</p>
+
+      <!-- switch - display an item on web depending on int. Set cases -->
+      <div [ngSwitch]="value">
+    <p *ngSwitchCase="5">Value is 5</p>
+    <p *ngSwitchCase="10">Value is 10</p>
+    <p *ngSwitchCase="100">Value is 100</p>
+    <p *ngSwitchDefault>Value is default</p>
+      </div>
+</div>
+  </div>
+</div>

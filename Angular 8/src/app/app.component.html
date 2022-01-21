@@ -1,0 +1,31 @@
+<!-- router link vs href page, no reload or refresh page
+/ apsolute path
+if we remove / from users we can still use because its root path.
+routerLinkActive marks selected bar navigation on click
+routerLinkOption (exact:true for marking routing links) is linked [] because it needs some javascript object
+-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+        <li role="presentation"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/">Home</a></li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a routerLink="/servers">Servers</a></li>
+        <li role="presentation"
+            routerLinkActive="active">
+          <a [routerLink]="['users']">Users</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--Reserved for rotes on top level in app module -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

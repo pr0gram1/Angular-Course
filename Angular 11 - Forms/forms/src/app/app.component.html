@@ -1,0 +1,95 @@
+<!-- required is basic html chunk but the angular will see as selector
+when we ruin it with email. If we run the submit button with empty fields. The valid will be false.
+If we type everything but email it will still be false unitl we type smth in email then only will be set to true validation.
+Also anther way to see if email field is valid or not is by elements.
+Find the emailfield and you can see the ng-dirty no-touched ng-valid section.
+If we remove the @ from email. Angular will automatically out it into invaild section.
+Textarea just like in JavaSwing is a object on web in witch you can type text. After the text is written
+at the source code on web the value of object of questionAnswer is the typed string
+ngModel group takes all the object from the web and you can have controll over them ex. like invalid enter of string etc
+Adding radiobutton for genders (JavaSwing ex)
+Now with submitted prop we can sysout the values ,like gender etc all thats on the web, below the last object on web page
+-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div id="user-data"
+             ngModelGroup = "userData"
+             #userData="ngModelGroup">
+          < class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+            ngModel
+            name="username"
+            required
+            email
+            #email="ngModel">
+            <span class ="help-nlock" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+          </div>
+          <button class="btn btn-default" type="button"
+          (click)="suggestUserName()">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+            ngModel
+            name="email">
+          </div>
+        </div>
+    <p *ngIf = "!userData.valid && userData.touched">User data is invalid</p>
+    <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select
+            id="secret"
+            class="form- control"
+            ngModel="defaultQuestion"
+            name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+    <div class="form-class">
+      <textarea
+        name="questionAnswer"
+        rows="3"
+        class="form-control"
+      [(ngModel)] = "answer"></textarea>
+    </div>
+    <p>Your reply: {{ answer }}</p>
+    <div class="radio" *ngFor="let gender of genders" >
+      <label
+        type ="radio"
+        name = "gender"
+        ngModel
+        required
+        [value]="gender">
+      {{ gender }}
+      </label>
+    </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+        [disabled]="f.valid">Submit</button>
+      </form>
+    </div>
+    </div>
+<hr>
+<div class="row" *ngIf="submitted">
+  <div class="col-xs-12">
+    <h3>Your Data</h3>
+    <p>Username: {{ user.username}}</p>
+    <p>Mail: {{user.email}} </p>
+    <p>Secret Question: Your first {{user.secretQuestion}}</p>
+    <p>Answer: {{user.answer}}</p>
+    <p>Gender: {{ user.gender}}</p>
+  </div>
+</div>
+
+

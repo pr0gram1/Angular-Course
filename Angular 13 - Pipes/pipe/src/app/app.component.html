@@ -1,0 +1,37 @@
+<!-- logically - we use pipes here in temp
+ex {|} uppercase, lowercase, date etc. For decorating objects
+passing parameters in pipe like date: with colon
+API REFERENCE site for more documentation
+search datePipe or more formats like fullDate, longDate, shortTime etc
+Mixing pipes - they need to bo in order ex if we put uppercase in first place it will be a error
+| shorten is a custom made pipe. Created a new class with a decorator and its values. Added to app module and
+implemented in temp. After that we passed a parameter created in shorten class by adding |shorten . 5, colon and value
+async -  recognizes that is a promise (also works with observ, it will sub automatically) and after 2 sec it will reocgnize that smth changed
+ that data was sent to subscription and it will sysout-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <input type="text" [(ngModel)] ="filteredStatus">
+      <br>
+      <button class="btn btn-primary" (click)="onAddServer()">Add server</button>
+      <br><br>
+      <h2>App Status: {{ appStatus | async }}</h2>
+      <hr>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let server of servers | filter:filteredStatus:'status'"
+          [ngClass]="getStatusClasses(server)">
+          <span
+            class="badge">
+            {{ server.status }}
+          </span>
+          <strong>
+            {{ server.name  | shorten:5}}</strong> |
+          {{ server.instanceType | uppercase }} |
+          {{ server.started | date:'fullDate' | uppercase }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

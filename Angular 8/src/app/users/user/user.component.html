@@ -1,0 +1,7 @@
+<p>User with ID {{ user.id}} loaded.</p>
+<p>User name is {{user.name }}</p>
+<!-- from ngOnInit. So if we type the route url 4200/users/3/Max it will printout above string with attributes -->
+
+<hr>
+<a [routerLink]="['/users',10,'Anna']">Load Anna (10)</a> <!-- Changes on click url by adding Anna to url-->
+
